@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanan Ahmad — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b2430;
+    --ink-deep: #141c26;
+    --paper: #eae3d3;
+    --paper-line: #d8cfb8;
+    --text-on-ink: #e9e4d6;
+    --text-dim: #8b95a3;
+    --brass: #b08d57;
+    --sage: #5c8374;
+    --rule: #3a4757;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text-on-ink);
+    font-family: 'Spectral', serif;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(27,36,48,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 10;
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+  }
+  .nav-mark {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--brass);
+  }
+  .nav-links { display: flex; gap: 22px; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--text-on-ink); }
+
+  /* HERO */
+  .hero {
+    padding: 96px 0 72px;
+    position: relative;
+  }
+  .marginalia {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--sage);
+    transform: rotate(-2deg);
+    display: inline-block;
+    margin-bottom: 18px;
+    border-bottom: 1px dashed var(--sage);
+    padding-bottom: 3px;
+  }
+  h1.name {
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 500;
+    margin: 0 0 14px;
+    color: var(--text-on-ink);
+    letter-spacing: -0.01em;
+  }
+  .role {
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    color: var(--brass);
+    margin: 0 0 28px;
+  }
+  .intro {
+    font-size: 18px;
+    color: #cfc9ba;
+    max-width: 56ch;
+    font-style: italic;
+  }
+  .intro-plain {
+    font-size: 17px;
+    color: #cfc9ba;
+    max-width: 58ch;
+    margin-top: 14px;
+  }
+
+  /* SECTION SHELL */
+  section { padding: 64px 0; }
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    background-image: repeating-linear-gradient(to right, var(--rule) 0, var(--rule) 6px, transparent 6px, transparent 12px);
+    height: 1px;
+    background: none;
+    margin: 0;
+  }
+  .rule-line {
+    height: 1px;
+    background: repeating-linear-gradient(to right, var(--rule) 0, var(--rule) 5px, transparent 5px, transparent 11px);
+  }
+
+  h2.section-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    margin: 0 0 32px;
+  }
+  h2.section-title span { color: var(--brass); }
+
+  /* ABOUT */
+  .about-body { color: #cfc9ba; max-width: 60ch; font-size: 17px; }
+  .about-body p { margin: 0 0 16px; }
+
+  .facts {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 28px;
+  }
+  .fact dt {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--sage);
+    margin-bottom: 3px;
+  }
+  .fact dd {
+    margin: 0;
+    color: var(--text-on-ink);
+    font-size: 15px;
+  }
+
+  /* SKILLS */
+  .skill-groups { display: flex; flex-direction: column; gap: 20px; }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--brass);
+  }
+  .skill-items { color: #cfc9ba; font-size: 16px; }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 26px 26px 22px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .project-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 rgba(0,0,0,0.3);
+  }
+  .project-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--sage);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .project-card h3 {
+    font-size: 21px;
+    font-weight: 600;
+    margin: 6px 0 8px;
+  }
+  .project-card p {
+    margin: 0 0 14px;
+    font-size: 15px;
+    color: #3d3627;
+  }
+  .project-card a {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+  }
+  .project-card a:hover { color: var(--sage); border-color: var(--sage); }
+
+  /* CONTACT */
+  .contact-body { color: #cfc9ba; max-width: 56ch; font-size: 17px; margin-bottom: 28px; }
+  .contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .contact-list a {
+    color: var(--text-on-ink);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .contact-list a span.k { color: var(--brass); min-width: 90px; display: inline-block; }
+  .contact-list a:hover { color: var(--sage); }
+
+  footer {
+    text-align: left;
+    padding: 32px 0 48px;
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+  }
+
+  @media (max-width: 560px) {
+    .facts { grid-template-columns: 1fr; }
+    .skill-row { grid-template-columns: 1fr; gap: 4px; }
+    .nav-links { gap: 14px; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-mark">H.A. / 2026</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="marginalia">currently — GIFT University, Gujranwala</span>
+    <h1 class="name">Hanan Ahmad</h1>
+    <p class="role">Computer Science Student &amp; Frontend Developer</p>
+    <p class="intro-plain">I build interfaces the way I'd write a page — with attention to structure first, then voice. Currently studying CS while working through frontend fundamentals: layout, interaction, and the small details that make an interface feel considered rather than assembled.</p>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section id="about">
+    <h2 class="section-title"><span>01 /</span> About</h2>
+    <div class="about-body">
+      <p>I'm a Computer Science student with a habit of treating code and craft the same way — draft, refine, reread. Outside of coursework I paint, write poetry, and solve Rubik's cubes, which probably explains why I care more about how something resolves than how fast it gets there.</p>
+      <p>I've served as a Class Representative and hold a Google Project Management Professional Certificate — I like structure as much as I like building things, and I try to bring both to every project.</p>
+    </div>
+    <dl class="facts">
+      <div class="fact"><dt>Based in</dt><dd>Gujranwala, Pakistan</dd></div>
+      <div class="fact"><dt>Studying</dt><dd>BS Computer Science</dd></div>
+      <div class="fact"><dt>Certified in</dt><dd>Project Management (Google)</dd></div>
+      <div class="fact"><dt>Role</dt><dd>Class Representative</dd></div>
+    </dl>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section id="skills">
+    <h2 class="section-title"><span>02 /</span> Skills</h2>
+    <div class="skill-groups">
+      <div class="skill-row">
+        <span class="skill-label">LANGUAGES</span>
+        <span class="skill-items">Java, JavaScript, HTML, CSS</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">FRONTEND</span>
+        <span class="skill-items">Responsive layout, DOM interaction, UI states, basic animation</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">CS FOUNDATIONS</span>
+        <span class="skill-items">Object-Oriented Programming, digital electronics, UML modeling</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-label">OTHER</span>
+        <span class="skill-items">Project management (PMP certified), technical writing</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section id="projects">
+    <h2 class="section-title"><span>03 /</span> Projects</h2>
+
+    <div class="project-card">
+      <span class="project-tag">HTML · CSS · JS</span>
+      <h3>Desk Calculator</h3>
+      <p>A tactile calculator interface with full keyboard support, live expression display, and graceful error handling — styled like a physical desk unit rather than a phone app.</p>
+      <a href="#">View project →</a>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">HTML · CSS · JS</span>
+      <h3>Field Notes Gallery</h3>
+      <p>A photo gallery framed like a contact sheet, with category filtering and a lightbox for next/prev browsing — built around the idea of prints laid out on a table.</p>
+      <a href="#">View project →</a>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">HTML · CSS · JS</span>
+      <h3>This Portfolio</h3>
+      <p>The site you're looking at — a single-page notebook-style layout built to hold coursework, projects, and contact information as they grow.</p>
+      <a href="#">View source →</a>
+    </div>
+  </section>
+
+  <div class="rule-line"></div>
+
+  <section id="contact">
+    <h2 class="section-title"><span>04 /</span> Contact</h2>
+    <p class="contact-body">Open to internship opportunities and frontend work. The easiest way to reach me is by email — happy to share code samples or walk through any of the projects above.</p>
+    <div class="contact-list">
+      <a href="mailto:hanan@example.com"><span class="k">Email</span> hanan@example.com</a>
+      <a href="https://github.com/" target="_blank" rel="noopener"><span class="k">GitHub</span> github.com/hanan-ahmad</a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener"><span class="k">LinkedIn</span> linkedin.com/in/hanan-ahmad</a>
+    </div>
+  </section>
+
+  <footer>
+    Built by Hanan Ahmad — updated 2026.
+  </footer>
+
+</div>
+
+</body>
+</html>
